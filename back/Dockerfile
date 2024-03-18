@@ -1,15 +1,20 @@
 FROM python:3.11-alpine
 
-# where to copy your file
+# Install system dependencies new code due to issues with dependencies with numpy
+RUN apk add --no-cache gcc musl-dev
+
+# Set working directory
 WORKDIR /app
 
 # Copy your application code
 COPY . .
 
-# Install Python dependencies from requirements.txt
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Copy requirements file and install Python dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Expose the port
 EXPOSE 8000
 
+# Command to run the application
 CMD ["python", "api_models.py"]
