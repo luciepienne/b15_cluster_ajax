@@ -5,12 +5,15 @@ document.getElementById("run-button").addEventListener("click", async () => {
 });
 
 async function sendClusteringRequest(modelName) {
-  const response = await fetch(`http://127.0.0.1:8000/${modelName}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `http://b15back8000.aab5hqarhsdkbqbq.westeurope.azurecontainer.io:8000/${modelName}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.ok) {
     const result = await response.json();

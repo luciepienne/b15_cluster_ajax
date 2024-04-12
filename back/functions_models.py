@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 # Load data and prepare features
-csv_path = "../data/Mall_Customers.csv"
+csv_path = "data/Mall_Customers.csv"
 data = pd.read_csv(csv_path)
 # Rename columns
 data = data.rename(

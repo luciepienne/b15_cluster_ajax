@@ -1,20 +1,21 @@
 FROM python:3.11-alpine
 
-# Install system dependencies new code due to issues with dependencies with numpy
-RUN apk add --no-cache gcc musl-dev
+# Install system dependencies including g++
+RUN apk add --no-cache gcc g++ musl-dev
 
 # Set working directory
 WORKDIR /app
 
 # Copy your application code
-COPY . .
+COPY /back .
 
 # Copy requirements file and install Python dependencies
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install --upgrade pip 
+RUN pip install --no-cache-dir scikit-learn fastapi uvicorn numpy pandas
+    
 # Expose the port
 EXPOSE 8000
 
 # Command to run the application
 CMD ["python", "api_models.py"]
+
