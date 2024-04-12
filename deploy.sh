@@ -3,9 +3,6 @@
 # Change to the specified directory
 # cd ~/simplon/briefs/b15_ajax/github/
 
-# Authenticate to the Azure Container Registry
-#docker login yourazurerepo.azurecr.io -u yourazurerepo -p "yourpassword"
-
 # Build and push the b15back image
 docker build -t b15back -f Dockerfile.back .
 docker tag b15back lpb15ajax.azurecr.io/back:8000
