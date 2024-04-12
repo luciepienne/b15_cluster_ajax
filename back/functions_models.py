@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
+import numpy
 
 # Load data and prepare features
 csv_path = "data/Mall_Customers.csv"
@@ -26,7 +27,7 @@ scaler = StandardScaler()
 features_scaled = scaler.fit_transform(data[feature_columns])
 
 
-def kmeans_clustering(k, n_init):               
+def kmeans_clustering(k, n_init):
     # Entraînement du modèle DBSCAN
     kmeans = KMeans(n_clusters=k, n_init=n_init, random_state=42)
     kmeans.fit(features_scaled)
