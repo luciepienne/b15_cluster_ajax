@@ -6,7 +6,7 @@ document.getElementById("run-button").addEventListener("click", async () => {
 
 async function sendClusteringRequest(modelName) {
   const response = await fetch(
-    `http://b15back8000.aab5hqarhsdkbqbq.westeurope.azurecontainer.io:8000/${modelName}`,
+    `http://lucie-ajax.westeurope.azurecontainer.io:8000/${modelName}`,
     {
       method: "GET",
       headers: {

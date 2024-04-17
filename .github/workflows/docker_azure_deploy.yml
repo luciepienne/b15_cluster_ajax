@@ -58,6 +58,9 @@ jobs:
           regex: false
           include: "deploy_az_instance_cont.yml"
 
+      - name: Delete Actual Container Instances
+        run: az container delete --resource-group lucie --name lucieb15azcontainer --yes
+
       - name: Deploy to Azure Container Instances
         run: az container create --resource-group lucie --file deploy_az_instance_cont.yml
 
