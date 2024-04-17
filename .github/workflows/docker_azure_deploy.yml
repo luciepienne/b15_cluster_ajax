@@ -1,0 +1,65 @@
+name: Azure Deployment
+
+on:
+  push:
+    branches:
+      - main
+# voir pour on quand python test fini et ok
+# deploy que on pytest sans erreur
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Black
+        run: pip install black
+
+      - name: Format code with Black
+        run: black .
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az account show
+
+      - name: Azure ACR login
+        run: |
+          az acr login --name lpb15ajax
+
+      - name: Build and push Docker images
+        run: |
+          docker build -t b15back -f Dockerfile.back .
+          docker tag b15back lpb15ajax.azurecr.io/back:8000
+          docker push lpb15ajax.azurecr.io/back:8000
+          docker build -t b15front -f Dockerfile.front .
+          docker tag b15front lpb15ajax.azurecr.io/front:3008
+          docker push lpb15ajax.azurecr.io/front:3008
+
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "password.registry"
+          replace: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+          regex: false
+          include: "deploy_az_instance_cont.yml"
+
+      - name: Deploy to Azure Container Instances
+        run: az container create --resource-group lucie --file deploy_az_instance_cont.yml
+
+    # rajouter une notification : liste des commit(avec chaque commit = une tache)
+    # bonne pratique commit: {tag du ticket} description

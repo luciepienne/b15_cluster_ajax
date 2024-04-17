@@ -6,8 +6,6 @@ from back.api_models import app
 client = TestClient(app)
 
 
-
-
 def test_kmeans_endpoint():
     resp = client.get("/kmeans")
     assert resp.status_code == 200

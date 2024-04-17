@@ -1,0 +1,41 @@
+apiVersion: 2023-05-01
+location: westeurope
+name: lucieb15azcontainer
+properties:
+  imageRegistryCredentials:
+      - server: lpb15ajax.azurecr.io
+        username: lpb15ajax
+        password: password.registry
+  containers:
+  - name: lucie-b15-front
+    properties:
+      image: lpb15ajax.azurecr.io/front:3008
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 80
+      - port: 3008
+  - name: lucie-b15-back
+    properties:
+      image: lpb15ajax.azurecr.io/back:8000
+      ports:
+      - port: 8000
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+  osType: Linux
+  ipAddress:
+    type: Public
+    dnsNameLabel: lucie-ajax
+    ports:
+    - protocol: tcp
+      port: 80
+    - protocol: tcp
+      port: 8000
+    - protocol: tcp
+      port: 3008
+tags: {exampleTag: lucieb15}
+type: Microsoft.ContainerInstance/containerGroups
