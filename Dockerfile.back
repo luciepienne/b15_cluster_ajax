@@ -1,7 +1,7 @@
 FROM python:3.11-slim
 
-# Install system dependencies including g++
-RUN apk add --no-cache gcc g++ musl-dev
+# # Install system dependencies including g++ in case you use python 3.11-alpine
+# RUN apk add --no-cache gcc g++ musl-dev
 
 # Set working directory
 WORKDIR /app
