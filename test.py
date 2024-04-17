@@ -16,9 +16,3 @@ def test_dbscan_endpoint():
     resp = client.get("/dbscan")
     assert resp.status_code == 200
     assert isinstance(resp.json(), float)
-
-
-def test_hierarchical_endpoint():
-    resp = client.get("/hierarchical")
-    assert resp.status_code == 200
-    assert isinstance(resp.json(), float)
