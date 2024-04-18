@@ -1,4 +1,3 @@
-from unittest.mock import patch
 import numpy as np
 import sys
 import os
@@ -14,28 +13,20 @@ from functions_models import (
 
 
 def test_fetch_normalize_and_read_rawdata():
-    # Mock requests.get to return test CSV content
-    with patch("requests.get") as mock_get:
-        # Prepare test data (sample CSV content)
-        test_csv_content = (
-            "CustomerID,Gender,Age,Annual Income (k$),Spending Score (1-100)\n"
-            "1,Male,19,15,39\n"
-            "2,Female,21,15,81\n"
-            "3,Female,20,16,6\n"
-            # Add more rows as needed
-        )
-
-        mock_get.return_value.status_code = 200
-        mock_get.return_value.content = test_csv_content.encode("utf-8")
-
-        # Call the function
-        features_scaled = fetch_normalize_and_read_rawdata()
-
-    # Check if the returned features have the correct shape
+    # Call the function
+    features_scaled = fetch_normalize_and_read_rawdata()
+    # Check if the returned features have a correct shape
     assert features_scaled.shape >= (
         150,
         4,
-    )  # Assuming 3 rows and 4 columns in the test CSV
+    )
+    # # Check if all values in the gender column are between 0 and 1
+    # assert np.all(np.logical_and(features_scaled[:, 1] >= 0, features_scaled[:, 1] <= 1))
+    # # Check if the gender column contains only 0 or 1
+    # assert np.all((features_scaled[:, 1] == 0) | (features_scaled[:, 1] == 1))
+
+
+test_fetch_normalize_and_read_rawdata()
 
 
 # Test KMeans clustering function
