@@ -55,11 +55,11 @@ jobs:
       - name: Build and push Docker images
         run: |
           docker build -t b15back -f Dockerfile.back .
-          docker tag b15back lpb15ajax.azurecr.io/back:8000
-          docker push lpb15ajax.azurecr.io/back:8000
+          docker tag b15back lpb15ajax.azurecr.io/back:test
+          docker push lpb15ajax.azurecr.io/back:test
           docker build -t b15front -f Dockerfile.front .
-          docker tag b15front lpb15ajax.azurecr.io/front:80
-          docker push lpb15ajax.azurecr.io/front:80
+          docker tag b15front lpb15ajax.azurecr.io/front:test
+          docker push lpb15ajax.azurecr.io/front:test
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v2
