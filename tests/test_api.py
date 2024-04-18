@@ -1,4 +1,11 @@
 from fastapi.testclient import TestClient
+import os
+import sys
+
+# Append the parent directory of the 'tests' directory to sys.path
+tests_dir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.dirname(tests_dir)
+sys.path.append(project_dir)
 
 from back.api_models import app
 
