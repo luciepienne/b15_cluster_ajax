@@ -1,5 +1,2 @@
-Dockerfile.back
-Dockerfile.front
-Dockerfile_html
 __pycache__
 .pytest_cache
