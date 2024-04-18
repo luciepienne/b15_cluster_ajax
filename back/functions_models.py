@@ -2,10 +2,15 @@ import pandas as pd
 from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
+import os
 
+# Get the absolute path to the 'data' directory
+data_dir = os.path.join(os.path.dirname(__file__), "data")
+# Specify the file name
+csv_filename = "Mall_Customers.csv"
 
-# Load data and prepare features
-csv_path = "data/Mall_Customers.csv"
+# Construct the absolute path to the CSV file
+csv_path = os.path.join(data_dir, csv_filename)
 data = pd.read_csv(csv_path)
 # Rename columns
 data = data.rename(
