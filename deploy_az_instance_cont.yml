@@ -9,7 +9,7 @@ properties:
   containers:
   - name: lucie-b15-front
     properties:
-      image: lpb15ajax.azurecr.io/front:3008
+      image: lpb15ajax.azurecr.io/front:80
       resources:
         requests:
           cpu: 1
