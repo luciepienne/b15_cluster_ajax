@@ -28,6 +28,7 @@ jobs:
           pip install pytest
           pip install httpx
           pip install black
+          pip install requests
 
       - name: Format code with Black
         run: black .
