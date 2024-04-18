@@ -16,7 +16,7 @@ properties:
           memoryInGb: 1.5
       ports:
       - port: 80
-      - port: 3008
+      # - port: 3008
   - name: lucie-b15-back
     properties:
       image: lpb15ajax.azurecr.io/back:8000
@@ -35,7 +35,7 @@ properties:
       port: 80
     - protocol: tcp
       port: 8000
-    - protocol: tcp
-      port: 3008
+    # - protocol: tcp
+      # port: 3008
 tags: {exampleTag: lucieb15}
 type: Microsoft.ContainerInstance/containerGroups

@@ -6,6 +6,7 @@ from functions_models import (
     kmeans_clustering,
     dbscan_clustering,
     hierarchical_clustering,
+    fetch_normalize_and_read_rawdata,
 )
 
 app = FastAPI()

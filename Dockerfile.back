@@ -11,7 +11,7 @@ COPY /back .
 
 # Copy requirements file and install Python dependencies
 RUN pip install --upgrade pip 
-RUN pip install --no-cache-dir scikit-learn fastapi uvicorn numpy pandas
+RUN pip install --no-cache-dir scikit-learn fastapi uvicorn numpy pandas requests
     
 # Expose the port
 EXPOSE 8000

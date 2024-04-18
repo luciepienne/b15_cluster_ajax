@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clustering Silhouette Score</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Clustering Silhouette Score</h1>
-    <div>
-        <label for="model-select">Select a model:</label>
-        <select id="model-select">
-            <option value="kmeans">KMeans</option>
-            <option value="dbscan">DBSCAN</option>
-            <option value="hierarchical">Hierarchical</option>
-        </select>
-        <button id="run-button">Run</button>
+    <div class="container">
+        <h1>Clustering Silhouette Score</h1>
+        <div class="form-group">
+            <label for="model-select">Select a model:</label>
+            <select id="model-select" class="select-model">
+                <option value="kmeans">KMeans</option>
+                <option value="dbscan">DBSCAN</option>
+                <option value="hierarchical">Hierarchical</option>
+            </select>
+        </div>
+        <button id="run-button" class="run-button">Run</button>
+        <div id="result" class="result"></div>
     </div>
-    <div id="result"></div>
     <script src="app.js"></script>
 </body>
 </html>
+

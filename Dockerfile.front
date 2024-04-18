@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY /front .
 
-EXPOSE 3008
+# EXPOSE 3008
 
-CMD ["python", "-m", "http.server", "3008"]
+# CMD ["python", "-m", "http.server", "3008"]
+
+CMD ["python", "-m", "http.server", "80"]

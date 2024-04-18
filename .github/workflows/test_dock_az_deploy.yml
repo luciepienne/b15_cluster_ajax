@@ -5,10 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -61,8 +57,8 @@ jobs:
           docker tag b15back lpb15ajax.azurecr.io/back:8000
           docker push lpb15ajax.azurecr.io/back:8000
           docker build -t b15front -f Dockerfile.front .
-          docker tag b15front lpb15ajax.azurecr.io/front:3008
-          docker push lpb15ajax.azurecr.io/front:3008
+          docker tag b15front lpb15ajax.azurecr.io/front:80
+          docker push lpb15ajax.azurecr.io/front:80
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v2
