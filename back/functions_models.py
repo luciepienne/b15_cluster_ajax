@@ -1,10 +1,8 @@
 import pandas as pd
-import numpy as np
-
 from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
-import numpy
+
 
 # Load data and prepare features
 csv_path = "data/Mall_Customers.csv"

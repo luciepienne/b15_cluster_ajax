@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-# voir pour on quand python test fini et ok
-# deploy que on pytest sans erreur
 
 permissions:
   id-token: write
@@ -19,16 +17,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Black
-        run: pip install black
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+          pip install black
 
       - name: Format code with Black
         run: black .
 
+      - name: Run tests
+        run: pytest tests/
+
       - name: Azure login
         uses: azure/login@v2
         with:
-          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Azure CLI script
         uses: azure/CLI@v1
@@ -63,6 +72,3 @@ jobs:
 
       - name: Deploy to Azure Container Instances
         run: az container create --resource-group lucie --file deploy_az_instance_cont.yml
-
-    # rajouter une notification : liste des commit(avec chaque commit = une tache)
-    # bonne pratique commit: {tag du ticket} description
